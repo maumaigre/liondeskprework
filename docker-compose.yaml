@@ -7,18 +7,18 @@ services:
   ports:
   - "8080:8080" # specify port mapping
  
- api: # name of the second service
-  build: api/sequelize # specify the directory of the Dockerfile
-  ports:
-  - "3000:3000" #specify ports mapping
-  links:
-  - database # link this service to the database service
+#  api: # name of the second service
+#   build: api/sequelize # specify the directory of the Dockerfile
+#   ports:
+#   - "3000:3000" #specify ports mapping
+#   links:
+#   - database # link this service to the database service
  
- database: # name of the third service
-  image: mysql # specify image to build container from
-  command: --default-authentication-plugin=mysql_native_password
-  restart: always
-  environment:
-    MYSQL_ROOT_PASSWORD: password
-  ports:
-  - "3306:3306" # specify port forwarding
+#  database: # name of the third service
+#   image: mysql # specify image to build container from
+#   command: --default-authentication-plugin=mysql_native_password
+#   restart: always
+#   environment:
+#     MYSQL_ROOT_PASSWORD: password
+#   ports:
+#   - "3306:3306" # specify port forwarding
