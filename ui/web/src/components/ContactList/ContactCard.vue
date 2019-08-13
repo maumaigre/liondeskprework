@@ -18,7 +18,7 @@ export default {
 	},
 	methods: {
 		handleCardClick(){
-			this.$router.push(`/contacts/${this.contact.id}`)
+			this.$router.push(`/contact/${this.contact.id}`)
 		}
 	}
 };
