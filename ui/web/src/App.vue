@@ -24,9 +24,9 @@
 		height: 64px;
 		width: 100%;
 		img {
-		width: 42px;
-		height: 42px;
-		cursor: pointer;
+			width: 42px;
+			height: 42px;
+			cursor: pointer;
 		}
 	}
 
