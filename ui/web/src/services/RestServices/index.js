@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-
 export default class RestServices{
     constructor(){
         this.http = axios.create({
@@ -11,4 +10,7 @@ export default class RestServices{
         });
     }
 
+    getContact(id) {
+        return this.http.get(`/contacts/${id}`);
+    }
 }
