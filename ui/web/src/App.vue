@@ -1,14 +1,19 @@
 <template>
-	<v-app>
-    <div class="topbar">
-      <img src="https://theme.zdassets.com/theme_assets/698924/0c1ebb156a07d16e99aa7fe9a9b1509f9ec59c6d.png">
-      
-    </div>
-    <router-view></router-view>
+	<v-app style="height: 100vh;">
+    <v-container class="container">
+      <div class="topbar">
+        <img src="https://theme.zdassets.com/theme_assets/698924/0c1ebb156a07d16e99aa7fe9a9b1509f9ec59c6d.png">
+      </div>
+      <router-view></router-view>
+    </v-container>
 	</v-app>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
+*{
+  box-sizing: border-box;
+}
+
 .topbar{
   display: flex;
   align-items: center;
@@ -16,7 +21,17 @@
   background: gray;
   padding: 8px;
   height: 64px;
+  width: 100%;
 }
+
+.container{
+  max-width: unset!important;
+  width: 100%;
+  padding: 0!important;
+  height: 100%;
+  background: rgba(0,0,0, 0.2);
+}
+
 img{
   width: 42px;
   height: 42px;

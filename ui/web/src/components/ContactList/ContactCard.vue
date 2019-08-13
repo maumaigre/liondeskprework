@@ -1,5 +1,5 @@
 <template>
-	<v-card @click="handleCardClick()" class="contact-card" max-width="500">
+	<v-card @click="handleCardClick()" class="contact-card">
 		<v-card-title class="title">{{contact.first_name}} {{contact.last_name}}</v-card-title>
 		<v-card-text>{{contact.email}}</v-card-text>
 		<v-card-text>{{contact.mobile_phone}}</v-card-text>
@@ -18,11 +18,8 @@ export default {
 	},
 	methods: {
 		handleCardClick(){
-			this.$router.push(`/${this.contact.id}`)
+			this.$router.push(`/contacts/${this.contact.id}`)
 		}
-	},
-	mounted(){
-		console.log(this.contact);
 	}
 };
 </script>

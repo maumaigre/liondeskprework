@@ -19,6 +19,7 @@ export default {
 
 
         services.getContacts().then(res=>{
+            console.log(res)
             this.contacts = res.data.data;
         }, err =>{
             console.error(err)
@@ -34,9 +35,10 @@ export default {
 .contact-list{
     display: flex;
     width: 100%;
-    padding: 5% 3.5%;
-    justify-content: space-around;
-    background: rgba(0,0,0, 0.2);
-    height: 100%;
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 5% 0;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 </style>
