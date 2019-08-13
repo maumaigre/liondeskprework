@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-// import ContactList from './views/ContactList';
+import ContactList from './views/ContactList';
 import ContactDetails from './views/ContactDetails.vue';
 
 Vue.use(Router);
@@ -12,7 +12,7 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      // component: ContactList,
+      component: ContactList,
     },
     {
       path: '/contact/:id',
