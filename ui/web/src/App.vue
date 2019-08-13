@@ -1,18 +1,15 @@
 <template>
-	<v-app>
-		<router-view></router-view>
-	</v-app>
+  <v-app>
+    <router-view></router-view>
+  </v-app>
 </template>
 
 <script>
-import Services from './services/index';
+import Services from "./services/index";
 
 export default {
-  name: 'App',
-  components: {
-
-  },
-  data: () => ({
-  }),
+  name: "App",
+  components: {},
+  data: () => ({})
 };
 </script>
