@@ -16,8 +16,7 @@ export default {
 
     mounted(){
         const services = new Services();
-
-
+        
         services.getContacts().then(res=>{
             this.contacts = res.data.data;
         }, err =>{
