@@ -4,11 +4,12 @@ import axios from 'axios';
 export default class RestServices{
     constructor(){
         this.http = axios.create({
-            baseURL: 'https://api-v2.liondesk.com',
-            headers: {
-              'Authorization': 'Bearer 11569c60db1710ad7ed25c03d80c86caaf211825',
-            }
-        });
+            baseUrl: process.env.VUE_APP_BASE_URL,
+            headers:{ Authorization: 'Bearer' + proccess.env.VUE_APP_ACCESS_TOKEN }
+        })
     }
 
+    createContact (contact){
+        return axios.post("contacts", contact);
+    }
 }
