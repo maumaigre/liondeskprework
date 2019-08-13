@@ -11,6 +11,10 @@ export default class RestServices{
     }
   
     getContacts(){
-        return this.http.get("contacts");
+        return this.http.get("contacts"); 
+    }
+
+    getContact(id) {
+        return this.http.get(`/contacts/${id}`);
     }
 }
