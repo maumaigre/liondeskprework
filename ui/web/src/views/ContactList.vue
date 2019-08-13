@@ -19,7 +19,6 @@ export default {
 
 
         services.getContacts().then(res=>{
-            console.log(res)
             this.contacts = res.data.data;
         }, err =>{
             console.error(err)
