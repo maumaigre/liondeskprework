@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-
 export default class RestServices{
     constructor(){
         this.http = axios.create({

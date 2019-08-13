@@ -29,7 +29,6 @@
 			cursor: pointer;
 		}
 	}
-
 	.container {
 		max-width: unset;
 		width: 100%;

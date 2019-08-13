@@ -4,7 +4,6 @@
     </div>
 </template>
 
-
 <script>
 import Services from './../services/RestServices';
 import ContactCard from './../components/ContactList/ContactCard';
@@ -16,7 +15,7 @@ export default {
 
     mounted(){
         const services = new Services();
-        
+
         services.getContacts().then(res=>{
             this.contacts = res.data.data;
         }, err =>{
