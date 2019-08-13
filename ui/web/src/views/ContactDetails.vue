@@ -123,7 +123,6 @@ export default {
 };
 </script>
 
-
 <style lang="scss" scoped>
 .form-title {
   color: #2dc2e7;
