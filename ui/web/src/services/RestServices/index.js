@@ -11,4 +11,8 @@ export default class RestServices{
         });
     }
 
+    getContacts(){
+        return this.http.get("contacts");
+    }
+
 }

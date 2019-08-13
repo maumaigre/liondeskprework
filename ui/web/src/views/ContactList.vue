@@ -37,8 +37,9 @@ export default {
     width: 100%;
     margin: 0 auto;
     max-width: 1200px;
-    padding: 5% 0;
+    padding: 5% 2.5%;
     justify-content: space-between;
     flex-wrap: wrap;
+    height: calc(100% - 64px);
 }
 </style>
