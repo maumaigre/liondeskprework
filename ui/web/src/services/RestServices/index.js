@@ -17,4 +17,8 @@ export default class RestServices{
     getContact(id) {
         return this.http.get(`/contacts/${id}`);
     }
+
+    deleteContact(id) {
+        return this.http.delete(`/contacts/${id}`);
+    }
 }
