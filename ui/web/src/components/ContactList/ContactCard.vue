@@ -9,7 +9,14 @@
 				<v-btn text @click.stop="showModal = true">Delete</v-btn>
 			</v-card-actions>
 		</v-card>
-		<DeleteModal v-if="showModal === true" :showDialog="showModal" :name="contact.first_name" @onDeleteContact="deleteContact"></DeleteModal>
+		<DeleteModal 
+			v-if="showModal === true" 
+			:showDialog="showModal" 
+			:name="contact.first_name" 
+			@onDeleteContact="deleteContact"
+			@onCloseDialog="closeModal()"
+			>
+		</DeleteModal>
 	</div>
 </template>
 
@@ -42,6 +49,9 @@ export default {
 			})
 			.catch( error => console.error(error));
 			this.showModal  = false;
+		},
+		closeModal(){
+			this.showModal = false;
 		}
 
 	}

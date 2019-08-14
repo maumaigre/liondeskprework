@@ -1,7 +1,7 @@
 <template>
     <div>
       <v-row justify="center">
-        <v-dialog v-model="showDialog" max-width="400">
+        <v-dialog v-model="showDialog" max-width="400" @click:outside="closeDialog()">
           <v-card>
             <v-card-title class="headline">Delete contact confirmation</v-card-title>
             <v-card-text>
@@ -9,10 +9,10 @@
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="normal" @click="showDialog = false">
+              <v-btn color="normal" @click="closeDialog()">
                 Cancel
               </v-btn>
-              <v-btn color="error" @click="handleDelete">
+              <v-btn color="error" @click="handleDelete()">
                 Yes, delete
               </v-btn>
             </v-card-actions>
@@ -37,7 +37,10 @@ export default {
         handleDelete() {
             this.$emit('onDeleteContact');
             this.showDialog = false;
-        }
+        },
+        closeDialog(){
+           this.$emit('onCloseDialog');
+       }
     }
     
 }
