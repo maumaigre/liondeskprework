@@ -4,7 +4,7 @@
       <v-flex d-flex xs1>
         <h1>
           <v-icon large class="back-icon" color="white" @click="handleBack()">arrow_back</v-icon>
-          <span class="form-title">{{contact.name}}</span>
+          <span class="form-title">{{contact.name || 'Contact not found'}}</span>
         </h1>
       </v-flex>
       <v-flex xs2>
@@ -15,7 +15,7 @@
                 <span class="field-label">Company</span>
               </v-flex>
               <v-flex class="field-value">
-                <span>{{contact.company}}</span>
+                <span>{{contact.company || 'Empty'}}</span>
               </v-flex>
             </v-layout>
           </v-flex>
@@ -25,7 +25,7 @@
                 <span class="field-label">Email</span>
               </v-flex>
               <v-flex class="field-value">
-                <span>{{contact.email}}</span>
+                <span>{{contact.email || 'Empty'}}</span>
               </v-flex>
             </v-layout>
           </v-flex>
@@ -39,7 +39,7 @@
                 <span class="field-label">Mobile Phone</span>
               </v-flex>
               <v-flex class="field-value">
-                <span>{{contact.mobile_phone}}</span>
+                <span>{{contact.mobile_phone || 'Empty'}}</span>
               </v-flex>
             </v-layout>
           </v-flex>
@@ -49,7 +49,7 @@
                 <span class="field-label">Home Phone</span>
               </v-flex>
               <v-flex class="field-value">
-                <span>{{contact.home_phone}}</span>
+                <span>{{contact.home_phone || 'Empty'}}</span>
               </v-flex>
             </v-layout>
           </v-flex>
@@ -59,7 +59,7 @@
                 <span class="field-label">Birthday</span>
               </v-flex>
               <v-flex class="field-value">
-                <span>{{contact.birthday}}</span>
+                <span>{{contact.birthday || 'Empty'}}</span>
               </v-flex>
             </v-layout>
           </v-flex>
@@ -73,7 +73,7 @@
                 <span class="field-label">Office Phone</span>
               </v-flex>
               <v-flex class="field-value">
-                <span>{{contact.office_phone}}</span>
+                <span>{{contact.office_phone || 'Empty'}}</span>
               </v-flex>
             </v-layout>
           </v-flex>
@@ -83,13 +83,13 @@
                 <span class="field-label">Fax</span>
               </v-flex>
               <v-flex class="field-value">
-                <span>{{contact.fax}}</span>
+                <span>{{contact.fax || 'Empty'}}</span>
               </v-flex>
             </v-layout>
           </v-flex>
         </v-layout>
       </v-flex>
-      <v-flex v-if="contact.tags != 'Empty'" px-2>
+      <v-flex v-if="contact.tags != ''" px-2>
         <v-flex xs1>
           <span class="field-label">Tags</span>
         </v-flex>
@@ -123,18 +123,19 @@ export default {
     const restServices = new RestServices();
 
     restServices.getContact(this.$route.params.id).then(res => {
-      const empty = "Empty";
       const contact = res.data;
-
-      this.contact.name = `${contact.first_name} ${contact.last_name}`;
-      this.contact.company = contact.company || empty;
-      this.contact.email = contact.email || empty;
-      this.contact.mobile_phone = contact.mobile_phone || empty;
-      this.contact.home_phone = contact.home_phone || empty;
-      this.contact.birthday = contact.birthday || empty;
-      this.contact.office_phone = contact.office_phone || empty;
-      this.contact.fax = contact.fax || empty;
-      this.contact.tags = contact.tags || empty;
+      
+      this.contact = {
+        name: `${contact.first_name} ${contact.last_name}`,
+        company: contact.company,
+        email: contact.email,
+        mobile_phone: contact.mobile_phone,
+        home_phone: contact.home_phone,
+        birthday: contact.birthday,
+        office_phone: contact.office_phone,
+        fax: contact.fax,
+        tags: contact.tags,
+      }
     });
   },
   methods: {
