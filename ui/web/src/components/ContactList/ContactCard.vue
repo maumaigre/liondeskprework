@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div style="margin-bottom: 5%;">
 		<v-card @click="handleCardClick()" class="contact-card">
 			<v-card-title class="title">{{contact.first_name}} {{contact.last_name}}</v-card-title>
 			<v-card-text>{{contact.email}}</v-card-text>
@@ -55,6 +55,7 @@ export default {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	margin-bottom: 5%;
 	.title{
 		font-size: 16px!important;
 		height: 60px;
