@@ -17,7 +17,6 @@
 <script>
 import DeleteModal from '../DeleteModal';
 import RestServices from '../../services/RestServices/index';
-import { truncate } from 'fs';
 
 export default {
 	name: "ContactCard",
