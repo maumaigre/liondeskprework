@@ -1,25 +1,49 @@
 <template>
-	<v-card @click="handleCardClick()" class="contact-card">
-		<v-card-title class="title">{{contact.first_name}} {{contact.last_name}}</v-card-title>
-		<v-card-text>{{contact.email}}</v-card-text>
-		<v-card-text>{{contact.mobile_phone}}</v-card-text>
-		<v-card-actions class="actions">.
-			<v-btn text>Edit</v-btn>
-			<v-btn text>Delete</v-btn>
-		</v-card-actions>
-   </v-card>
+	<div>
+		<v-card @click="handleCardClick()" class="contact-card">
+			<v-card-title class="title">{{contact.first_name}} {{contact.last_name}}</v-card-title>
+			<v-card-text>{{contact.email}}</v-card-text>
+			<v-card-text>{{contact.mobile_phone}}</v-card-text>
+			<v-card-actions class="actions">
+				<v-btn text>Edit</v-btn>
+				<v-btn text @click.stop="showModal = true">Delete</v-btn>
+			</v-card-actions>
+		</v-card>
+		<DeleteModal v-if="showModal === true" :showDialog="showModal" :name="contact.first_name" @onDeleteContact="deleteContact"></DeleteModal>
+	</div>
 </template>
 
 <script>
+import DeleteModal from '../DeleteModal';
+import RestServices from '../../services/RestServices/index';
+
 export default {
 	name: "ContactCard",
+	components:{
+		DeleteModal
+	},
+	data(){
+		return{
+			showModal: false,
+		}
+	},
 	props: {
 		contact: Object
 	},
 	methods: {
 		handleCardClick(){
 			this.$router.push(`/contact/${this.contact.id}`)
+		},
+		deleteContact(){
+			const restService = new RestServices();
+			restService.deleteContact(this.contact.id)
+			.then( () => {
+				this.$emit('updateContacts');
+			})
+			.catch( error => console.error(error));
+			this.showModal  = false;
 		}
+
 	}
 };
 </script>
