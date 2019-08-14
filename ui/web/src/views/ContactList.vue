@@ -1,16 +1,16 @@
 <template >
     <div class="contact-list" v-if="contacts">
-        <ContactCard :contact="contact" :key="contact.id" v-for="contact in contacts"/>
+        <ContactCard :contact="contact" :key="contact.id" v-for="contact in contacts" @updateContacts="getContacts"/>
         <v-btn
             @click="showAddModal"
             color="gray"
             dark
             fab
             class="add-fab"
-            >
+        >
             <v-icon>add</v-icon>
         </v-btn>
-        <AddContactModal v-if="addModalShown" :showDialog="addModalShown" />
+        <AddContactModal v-if="addModalShown" @onAddContact="getContacts()" @onCloseDialog="closeAddModal()" :showDialog="addModalShown" />
     </div>
 </template>
 
@@ -24,24 +24,29 @@ export default {
         ContactCard,
         AddContactModal
     },
-
-    mounted(){
-        const services = new Services();
-
-        services.getContacts().then(res=>{
-            this.contacts = res.data.data;
-        }, err =>{
-            console.error(err)
-        });
-    },
     data: ()=> ({
         addModalShown: false,
         contacts: []
     }),
-    methods:{
+    methods: {
+        getContacts(){
+            const services = new Services();
+
+            services.getContacts().then(res =>{
+                this.contacts = res.data.data;
+            }, err =>{
+                console.error(err)
+            });
+        },
         showAddModal(){
             this.addModalShown = true;
+        },
+        closeAddModal(){
+            this.addModalShown = false;
         }
+    },
+    mounted(){
+        this.getContacts();
     }
 }
 </script>

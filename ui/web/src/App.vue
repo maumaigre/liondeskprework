@@ -16,6 +16,9 @@
 .app {
 	height: 100vh;
 	.topbar {
+		position: fixed;
+		top: 0;
+		z-index: 99;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -32,8 +35,10 @@
 	.container {
 		max-width: unset;
 		width: 100%;
+		overflow: auto;
 		padding: 0;
 		height: 100%;
+		padding-top: 2.5%;
 		background: rgba(0, 0, 0, 0.2);
 	}
 }

@@ -1,36 +1,51 @@
 <template>
-    <div>
-      <v-row justify="center">
-        <v-dialog width="520" height="350" v-model="showDialog" class="dialog">
-          <v-card class="card">
-            <v-card-title class="title">Add new contact</v-card-title>
-            <v-text-field
-                label="Contact name"
-                placeholder="Contact name"
-                solo>
-            </v-text-field>
-            <v-btn>Add Contact</v-btn>
-          </v-card>
-        </v-dialog>
-      </v-row>
-    </div>
+    <v-dialog @click:outside="closeDialog()" width="500" class="add-contact-dialog" v-model="showDialog" >
+      <v-card class="add-contact-dialog-card">
+        <v-card-title class="title">Add new contact</v-card-title>
+        <v-text-field
+            label="First name"
+            placeholder="First name"
+            solo
+            v-model="first_name"
+          >
+        </v-text-field>
+        <v-text-field
+            label="Last name"
+            placeholder="Last name"
+            solo
+            v-model="last_name"
+          >
+        </v-text-field>
+        <v-btn @click="handleAddContact()">Add Contact</v-btn>
+      </v-card>
+    </v-dialog>
 </template>
 
 <script>
+import RestServices from '../../services/RestServices';
 export default {
-    data(){
-        return {
-            
-        }
-    },
     props:{
         showDialog: Boolean,
-        name: String
     },
+    data: ()=>({
+        first_name: "",
+        last_name: ""
+    }),
     methods:{
         handleAddContact() {
-            this.$emit('onAddContact');
-            this.showDialog = false;
+            const restServices = new RestServices();
+            restServices.createContact({
+              first_name: this.first_name,
+              last_name: this.last_name
+            }).then(res=>{
+              this.$emit('onAddContact');
+              this.$emit('onCloseDialog');
+            }, err=>{
+              console.error(err);
+            })
+        },
+        closeDialog(){
+            this.$emit('onCloseDialog');
         }
     }
     
@@ -38,21 +53,19 @@ export default {
 </script>
 
 
-<style lang="scss" scoped>
-.dialog{
-  .card{
-    width: 100%;
-    height: 100%;
-    padding: 5%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    .title{
-      margin: 0 0 24px 6px;
-      padding: 0;
-      text-align: center;
-      font-size: 24px!important;
-    }
+<style lang="scss">
+.add-contact-dialog-card{
+  width: 100%;
+  height: 100%;
+  padding: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  .title{
+    margin: 0 0 24px 6px;
+    padding: 0;
+    text-align: center;
+    font-size: 24px;
   }
 }
 </style>
