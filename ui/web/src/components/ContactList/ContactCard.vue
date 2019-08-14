@@ -4,14 +4,13 @@
 			<v-card-title class="title">{{contact.first_name}} {{contact.last_name}}</v-card-title>
 			<v-card-text>{{contact.email}}</v-card-text>
 			<v-card-text>{{contact.mobile_phone}}</v-card-text>
-			<v-card-actions class="actions">.
+			<v-card-actions class="actions">
 				<v-btn text>Edit</v-btn>
 				<v-btn text @click.stop="showModal = true">Delete</v-btn>
 			</v-card-actions>
 		</v-card>
 		<DeleteModal v-if="showModal === true" :showDialog="showModal" :name="contact.first_name" @onDeleteContact="deleteContact"></DeleteModal>
 	</div>
-	
 </template>
 
 <script>
@@ -38,8 +37,7 @@ export default {
 		deleteContact(){
 			const restService = new RestServices();
 			restService.deleteContact(this.contact.id)
-			.then( res => {
-				console.log(res);
+			.then( () => {
 				this.$emit('updateContacts');
 			})
 			.catch( error => console.error(error));
