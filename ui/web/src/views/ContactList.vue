@@ -1,16 +1,28 @@
 <template >
     <div class="contact-list" v-if="contacts">
         <ContactCard :contact="contact" :key="contact.id" v-for="contact in contacts"/>
+        <v-btn
+            @click="showAddModal"
+            color="gray"
+            dark
+            fab
+            class="add-fab"
+            >
+            <v-icon>add</v-icon>
+        </v-btn>
+        <AddContactModal v-if="addModalShown" :showDialog="addModalShown" />
     </div>
 </template>
 
 <script>
 import Services from './../services/RestServices';
 import ContactCard from './../components/ContactList/ContactCard';
+import AddContactModal from './../components/ContactList/AddContactModal';
 
 export default {
     components: {
-        ContactCard
+        ContactCard,
+        AddContactModal
     },
 
     mounted(){
@@ -23,8 +35,14 @@ export default {
         });
     },
     data: ()=> ({
+        addModalShown: false,
         contacts: []
-    })
+    }),
+    methods:{
+        showAddModal(){
+            this.addModalShown = true;
+        }
+    }
 }
 </script>
 
@@ -38,5 +56,13 @@ export default {
     justify-content: space-between;
     flex-wrap: wrap;
     height: calc(100% - 64px);
+}
+
+button.v-btn--fab.add-fab{
+    position: fixed;
+    bottom: 4%;
+    right: 3%;
+    width: 72px;
+    height: 72px;
 }
 </style>
