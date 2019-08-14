@@ -1,6 +1,6 @@
 <template >
     <div class="contact-list" v-if="contacts">
-        <ContactCard :contact="contact" :key="contact.id" v-for="contact in contacts"/>
+        <ContactCard :contact="contact" :key="contact.id" v-for="contact in contacts" @updateContacts="getContacts"/>
     </div>
 </template>
 
@@ -12,19 +12,24 @@ export default {
     components: {
         ContactCard
     },
-
-    mounted(){
-        const services = new Services();
-
-        services.getContacts().then(res=>{
-            this.contacts = res.data.data;
-        }, err =>{
-            console.error(err)
-        });
-    },
     data: ()=> ({
         contacts: []
-    })
+    }),
+    methods: {
+        getContacts(){
+            const services = new Services();
+
+            services.getContacts().then(res =>{
+                this.contacts = res.data.data;
+            }, err =>{
+                console.error(err)
+            });
+        }
+    },
+    mounted: function(){
+        this.getContacts();
+        
+    },
 }
 </script>
 

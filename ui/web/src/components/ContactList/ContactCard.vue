@@ -1,13 +1,13 @@
 <template>
 	<div>
-		<DeleteModal :showModal="showModal" :name="contact.first_name" @onDeleteContact="deleteContact"></DeleteModal>
+		<DeleteModal :showDialog="showModal" :name="contact.first_name" @onDeleteContact="deleteContact"></DeleteModal>
 		<v-card @click="handleCardClick()" class="contact-card">
 		<v-card-title class="title">{{contact.first_name}} {{contact.last_name}}</v-card-title>
 		<v-card-text>{{contact.email}}</v-card-text>
 		<v-card-text>{{contact.mobile_phone}}</v-card-text>
 		<v-card-actions class="actions">.
 			<v-btn text>Edit</v-btn>
-			<v-btn text @click.stop="showModal">Delete</v-btn>
+			<v-btn text @click.stop="showModal = true">Delete</v-btn>
 		</v-card-actions>
    </v-card>
 	</div>
@@ -20,6 +20,9 @@ import RestServices from '../../services/RestServices/index';
 
 export default {
 	name: "ContactCard",
+	components:{
+		DeleteModal
+	},
 	data(){
 		return{
 			showModal: false
